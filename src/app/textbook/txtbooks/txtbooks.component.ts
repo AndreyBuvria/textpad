@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TxtpadService } from '../shared/txtpad.service';
 
 @Component({
   selector: 'app-txtbooks',
@@ -22,9 +23,12 @@ export class TxtbooksComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private txtpadApi: TxtpadService) { }
 
   ngOnInit(): void {
+    this.txtpadApi.getTxtpad().subscribe(data => {
+      console.log(data)
+    });
   }
 
 }
