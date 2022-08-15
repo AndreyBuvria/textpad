@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { TxtbooksComponent } from './txtbooks/txtbooks.component';
 import { TxtbookEditComponent } from './txtbook-edit/txtbook-edit.component';
+import { FormsModule }   from '@angular/forms';
 
 const routes = [
   {
@@ -36,7 +37,8 @@ const routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule
   ],
   exports: [RouterModule]
 })

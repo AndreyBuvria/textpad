@@ -15,19 +15,19 @@ export class TxtpadService {
     return this.http.get<Textpad>(`${this.URL}`);
   }
 
-  getParticularTxtpad(pk: number | string) {
+  getParticularTxtpad(pk: number) {
     return this.http.get<Textpad>(`${this.URL}${pk}`);
   }
 
-  createTxtpad(data: { title: string, text: string }) {
-    return this.http.post<Textpad>(`${this.URL}`, data);
+  createTxtpad() {
+    return this.http.post<Textpad>(`${this.URL}create`, { title: 'Title', text: 'Text' });
   }
 
-  editTxtpad(data: { title: string, text: string }) {
-    return this.http.patch<Textpad>(`${this.URL}`, data);
+  editTxtpad(data: { title: string, text: string }, pk: number) {
+    return this.http.patch<Textpad>(`${this.URL}${pk}`, data);
   }
 
-  removeTxtpad() {
-    return this.http.delete<Textpad>(`${this.URL}`);
+  removeTxtpad(pk: number) {
+    return this.http.delete<Textpad>(`${this.URL}${pk}`);
   }
 }

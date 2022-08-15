@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Textpad } from '../shared/txtpad.interface';
 import { TxtpadService } from '../shared/txtpad.service';
 
 @Component({
@@ -6,29 +8,33 @@ import { TxtpadService } from '../shared/txtpad.service';
   templateUrl: './txtbooks.component.html',
   styleUrls: ['./txtbooks.component.scss']
 })
-export class TxtbooksComponent implements OnInit {
+export class TxtbooksComponent implements OnInit, OnDestroy {
 
-  public txtpads = [
-    {
-      'title': 'text#1',
-      'id': 0,
-    },
-    {
-      'title': 'text#2',
-      'id': 1,
-    },
-    {
-      'title': 'text#3',
-      'id': 2,
-    },
-  ]
+  private subscription$!: Subscription
+  public txtpads!: Textpad[]
 
   constructor(private txtpadApi: TxtpadService) { }
 
   ngOnInit(): void {
-    this.txtpadApi.getTxtpad().subscribe(data => {
-      console.log(data)
+    this.initObjects();
+  }
+
+  initObjects() {
+    this.subscription$ = this.txtpadApi.getTxtpad().subscribe((data: any) => {
+      this.txtpads = data
     });
+  }
+
+  onCreate() {
+    this.subscription$ = this.txtpadApi.createTxtpad().subscribe(response => {
+      console.log(response);
+    }, (errors) => { console.log(errors); })
+
+    this.initObjects();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 
 }
