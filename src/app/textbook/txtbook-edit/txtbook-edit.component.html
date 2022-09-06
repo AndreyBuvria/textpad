@@ -1,0 +1,15 @@
+<form>
+  <div class="notepad">
+    <div class="notepad-container">
+      <label for="" class="notepad-label">
+        <input type="text" class="notepad-title" [(ngModel)]="txtpadData.title" name="title" placeholder="Enter your title">
+      </label>
+      <textarea name="text" cols="20" rows="100" class="notepad-field" [(ngModel)]="txtpadData.text">
+      </textarea>
+    </div>
+    <div class="notepad-control">
+      <button type="button" class="btn btn-save" (click)="onSave()">Save</button>
+      <button type="button" class="btn btn-remove" (click)="onRemove()">Remove</button>
+    </div>
+  </div>
+</form>

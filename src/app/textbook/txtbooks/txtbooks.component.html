@@ -1,0 +1,18 @@
+<ul class="txtpads">
+  <li class="txtpads-item" *ngFor="let txtpad of txtpads">
+    <a routerLink="/edit/{{ txtpad.id }}">
+      <img src="./assets/txtprew.png" alt="item" class="txtpads-img">
+      <h3 class="txtpads-title">{{ txtpad.title }}</h3>
+    </a>
+    <!--<button type="button" class="btn btn-edit">Edit</button>
+    <button type="button" class="btn btn-remove">Remove</button>-->
+  </li>
+
+  <li class="txtpads-item txtpads-create" (click)="onCreate()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>
+  </li>
+</ul>
+
